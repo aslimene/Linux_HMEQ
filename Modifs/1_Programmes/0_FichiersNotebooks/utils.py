@@ -177,8 +177,7 @@ def selection_np(selector, estimateur, X_train, y_train, X_test, Forward = False
                  smote = False, cv = 5):  
  
     """
-    Cette fonction affiche pour chaque selector et estimateur, le nombre de variables
-    selectionnés, les variables selectionnées.
+    Cette fonction affiche pour chaque selector et estimateur, le nombre et les variables selectionnées.
     Si le selector est la RFE ou ExhaustiveFeatureSelector, la fonction affiche le score obtenu après la sélection.
     
     Paramètres :
@@ -306,7 +305,9 @@ def val(X, y, smote = False):
 
 
 def overfit(metrics, X, y, smote = False):
-    
+    """
+    docstring
+    """
     if smote == True:
         print("SMOTE")
         smote = SMOTE(random_state=0 ,k_neighbors=15)
