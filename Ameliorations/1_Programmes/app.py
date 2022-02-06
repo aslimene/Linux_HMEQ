@@ -148,7 +148,7 @@ if score:
 
 
         st.write("Votre score est de", int(test_score.loc[ 0, "score"]),"points.", " Ce nombre de points vous donne une probabilité de défaut de", round(100*test_pred[0], 2), "%")
-        if int(test_score.loc[ 0, "score"]) > 850:
+        if int(test_score.loc[ 0, "score"]) >= 750:
             st.success('Sur la base de votre score, le prêt peut vous être accordé.')
         else:
             st.error('Sur la base de votre score, le prêt ne peut vous être accordé.')
