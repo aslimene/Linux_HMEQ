@@ -141,15 +141,17 @@ if score:
             #CALCUL DES SCORES TOTAUX DANS LE TRAIN SET
             train_score = sc.scorecard_ply(data, ppb, print_step=0, only_total_score=False)
             test_score = sc.scorecard_ply(df, ppb, print_step=0, only_total_score=False)
+
             p = sc.perf_psi(score = {'train':train_score, 'test':test_score}, 
                             label = {'train':data, 'test':df},
-                                        return_distr_dat=False)
+                            return_distr_dat=False)
+
             scorecard_bins = p["dat"]["score"]
            
             return test_pred, test_score, scorecard_bins
-        test_pred, test_score = scoring(base = 1000, pdo = 30)
+        test_pred, test_score, scorecard_bins = scoring(base = 1000, pdo = 30)
         st.table(scorecard_bins)
-        
+
         st.write("Votre score est de", int(test_score.loc[ 0, "score"]),"points.", " Ce nombre de points vous donne une probabilité de défaut de", round(100*test_pred[0], 2), "%")
         if int(test_score.loc[ 0, "score"]) > 850:
             st.success('Sur la base de votre score, le prêt peut vous être accordé.')
