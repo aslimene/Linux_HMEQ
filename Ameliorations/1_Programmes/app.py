@@ -141,22 +141,11 @@ if score:
             #CALCUL DES SCORES TOTAUX DANS LE TRAIN SET
             train_score = sc.scorecard_ply(data, ppb, print_step=0, only_total_score=False)
             test_score = sc.scorecard_ply(df, ppb, print_step=0, only_total_score=False)
-
-            if test_pred[0]> 0.45:
-                y_df = 1
-            else:
-                y_df = 0
-
-            p = sc.perf_psi(score = {'train':train_score, 'test':test_score}, 
-                            label = {'train':data["BAD"], 'test': y_df},
-                            return_distr_dat=True)
-
-            scorecard_bins = p["dat"]["score"]
            
-            return test_pred, test_score, scorecard_bins
+            return test_pred, test_score
 
-        test_pred, test_score, scorecard_bins = scoring(base = 1000, pdo = 30)
-        st.table(scorecard_bins)
+        test_pred, test_score = scoring(base = 1000, pdo = 30)
+
 
         st.write("Votre score est de", int(test_score.loc[ 0, "score"]),"points.", " Ce nombre de points vous donne une probabilité de défaut de", round(100*test_pred[0], 2), "%")
         if int(test_score.loc[ 0, "score"]) > 850:
