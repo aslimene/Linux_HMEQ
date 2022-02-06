@@ -30,13 +30,11 @@ st.markdown("""
             
 Le but de ce projet est de réaliser une grille de score permettant d'aider à la décision.
 Pour la réalisation de ce projet, nous nous sommes inspirés d'un projet fait par [Carl Lejerskar](https://github.com/Carl-Lejerskar).  
-
-Son projet est directement trouvable [ici](https://github.com/Carl-Lejerskar/HMEQ).  
-
+Son projet est directement trouvable [dans son repo](https://github.com/Carl-Lejerskar/HMEQ).  
 Ainsi, on a créé une grille de score calibrée sur 1000 points, plus le score est élevé, moins le client a de risque de faire défaut."""
 )
 
-st.markdown(""" Un projet de:
+st.markdown(""" Ce projet est réalisé par:
 *   **[Abdoul Aziz Berrada](https://github.com/aadmberrada)**
 *   **[Amira Slimene](https://github.com/aslimene)**
 *   **[Yasmine Ouyahya](https://github.com/youyahya)** """)
@@ -148,7 +146,7 @@ if score:
         test_pred, test_score = scoring(base = 1000, pdo = 30)
 
         st.write("Votre score est de", int(test_score.loc[ 0, "score"]),"points.", " Ce nombre de points vous donne une probabilité de défaut de", round(100*test_pred[0], 2), "%")
-        if int(test_score.loc[ 0, "score"]) > 900:
+        if int(test_score.loc[ 0, "score"]) > 850:
             st.success('Sur la base de votre score, le prêt peut vous être accordé.')
         else:
             st.error('Sur la base de votre score, le prêt ne peut vous être accordé.')
