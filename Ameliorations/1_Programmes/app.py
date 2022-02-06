@@ -36,8 +36,7 @@ Son projet est directement trouvable [ici](https://github.com/Carl-Lejerskar/HME
 st.markdown(""" Un projet de:
 *   **Abdoul Aziz Berrada**
 *   **Amira Slimene**
-*   **Yasmine Ouyahya**
-""")
+*   **Yasmine Ouyahya** """)
 
 st.markdown(""" ==> Pre requis :
 *   **Python :** pandas, sklearn, scorecardpy, streamlit.
