@@ -29,18 +29,19 @@ st.image('https://raw.githubusercontent.com/aadmberrada/Linux_HMEQ/main/Ameliora
 st.markdown("""
             
 Le but de ce projet est de réaliser une grille de score permettant d'aider à la décision.
-Pour la réalisation de ce projet, nous nous sommes inspirés d'un projet fait par [Carl Lejerskar](https://github.com/Carl-Lejerskar). 
-Son projet est directement trouvable [ici](https://github.com/Carl-Lejerskar/HMEQ) """
+Pour la réalisation de ce projet, nous nous sommes inspirés d'un projet fait par [Carl Lejerskar](https://github.com/Carl-Lejerskar).  
+Son projet est directement trouvable [ici](https://github.com/Carl-Lejerskar/HMEQ). 
+Ainsi, on a créé une grille de score calibrée sur 1000 points, plus le score est élevé, moins le client a de risque de faire défaut."""
 )
 
 st.markdown(""" Un projet de:
-*   **Abdoul Aziz Berrada**
-*   **Amira Slimene**
-*   **Yasmine Ouyahya** """)
+*   **[Abdoul Aziz Berrada](https://github.com/aadmberrada)**
+*   **[Amira Slimene](https://github.com/aslimene)**
+*   **[Yasmine Ouyahya](https://github.com/youyahya)** """)
 
 st.markdown(""" ==> Pre requis :
 *   **Python :** pandas, sklearn, scorecardpy, streamlit.
-*   **Source des données :** https://github.com/Carl-Lejerskar/HMEQ/blob/master/hmeq.csv""")
+*   **Source des données :** [Github](https://github.com/Carl-Lejerskar/HMEQ/blob/master/hmeq.csv)""")
 
 
 
