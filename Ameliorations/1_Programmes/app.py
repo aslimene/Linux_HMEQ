@@ -19,9 +19,9 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 
 #--------------------------------- Head
 ## ===> Header
-#st.title("")
+
 st.markdown("<h1 style='text-align: center;'> LOAN CENTER </h1>", unsafe_allow_html=True)
-#st.title("Stock Value Prediction using Neural Networks")
+
 
 
 st.image('https://raw.githubusercontent.com/aadmberrada/Linux_HMEQ/main/Ameliorations/2_Data/loans.jpeg')
@@ -129,7 +129,7 @@ if score:
             
             return test_pred, test_score
         test_pred, test_score = scoring(base = 1000, pdo = 30)
-        #st.write(test_pred)
+
         st.write("Votre score est de", test_score.loc[ 0, "score"],"points.", "Ce nombre de points vous donne une probabilité de défaut de", test_pred[0])
         
         
