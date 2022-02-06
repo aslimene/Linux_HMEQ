@@ -1,10 +1,16 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Feb  6 00:24:37 2022
+
+@author: Abdoul_Aziz_Berrada
+"""
 
 import streamlit as st
 import pandas as pd
-import time
-import numpy as np
 import scorecardpy as sc
 from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
 
 
 st.set_option('deprecation.showPyplotGlobalUse', False)
@@ -18,12 +24,11 @@ st.markdown("<h1 style='text-align: center;'> LOAN CENTER </h1>", unsafe_allow_h
 #st.title("Stock Value Prediction using Neural Networks")
 
 
-st.image('/Users/abdoul_aziz_berrada/Documents/M2_MOSEF/2_Projets/Semestre1/Linux_HMEQ/Ameliorations/2_Data/loans.jpeg')
+st.image('https://raw.githubusercontent.com/aadmberrada/Linux_HMEQ/main/Ameliorations/2_Data/loans.jpeg')
 
 st.markdown("""
             
 Le but de ce projet est de réaliser une grille de score permettant d'aider à la décision.
-
 Pour la réalisation de ce projet, nous nous sommes inspirés d'un projet fait par [Carl Lejerskar](https://github.com/Carl-Lejerskar). 
 Son projet est directement trouvable [ici](https://github.com/Carl-Lejerskar/HMEQ) """
 )
@@ -37,8 +42,9 @@ st.markdown(""" ==> Pre requis :
 
 st.markdown("<h2 style='text-align: center;'> Formulaire de demande de prêt </h2>", unsafe_allow_html=True) 
 
-PATH = "/Users/abdoul_aziz_berrada/Documents/M2_MOSEF/2_Projets/Semestre1/Linux_HMEQ/Ameliorations/2_Data/"
-data = pd.read_csv(PATH + "data_clean.csv").drop("Unnamed: 0", axis = 1)
+PATH = "https://raw.githubusercontent.com/aadmberrada/Linux_HMEQ/main/Ameliorations/2_Data/"
+
+data = pd.read_csv(PATH + "train_clean.csv").drop("Unnamed: 0", axis = 1)
 
 
 LOAN = st.text_input("Entrez le montant du prêt demandé en $")
@@ -62,30 +68,67 @@ inputs = {"LOAN":LOAN, "MORTDUE":MORTDUE, "VALUE":VALUE, "REASON":REASON,
 
 st.write("Veuillez confirmez l'exactitude des données entrées",  inputs)
 
+
+
+def scoring(X, base = 1000, pdo = 30):
+    
+    #CREATION DE LA GRILLE SCORE À PARTIR DES CLASSES, DU MODÈLE M ET CALIBRAGE SUR "base" POINTS
+    lr = LogisticRegression(penalty='l2', C=5, max_iter= 100, random_state=42)
+    lr.fit(x, y)
+    test_pred = lr.predict_proba(test_woe)[:,1]
+    
+    ppb = sc.scorecard(classes, lr, xcolumns=test_woe.columns, 
+                       odds0=1/500,  points0=base, pdo=pdo, basepoints_eq0 = True)
+    
+    #CALCUL DES SCORES TOTAUX DANS LE TRAIN SET
+    train_score = sc.scorecard_ply(train_woe, ppb, print_step=0, only_total_score=False)
+    
+    return test_pred
+
+
 score = st.button("Appuyez pour voir votre crédit score")
 if score:
 
     if (any(val for val in inputs.values())!="") == True:
+        
         inputs_ = {"LOAN":int(LOAN), "MORTDUE": int(MORTDUE), "VALUE":int(VALUE), "REASON":REASON, 
         "JOB":JOB,  "YOJ" :int(YOJ), "DEROG":int(DEROG), "DELINQ":int(DELINQ),
         "CLAGE":int(CLAGE), "NINQ":int(NINQ), "CLNO":int(CLNO), "DEBTINC": float(DEBTINC)}
 
         df = pd.DataFrame(data = inputs_, index=[0])
         st.table(df)
-        st.dataframe(data)
 
-        train, test = train_test_split(data, test_size = 0.2, random_state = 42)
         classes = sc.woebin(data, y="BAD", positive=1, method="chimerge")
-        train_woe = sc.woebin_ply(train, classes)
-        test_woe = sc.woebin_ply(test, classes)
+        
+        train_woe = sc.woebin_ply(data, classes)
+        test_woe = sc.woebin_ply(df, classes)
+        
+        tr = train_woe.drop("BAD", axis =1)
+        test_woe = test_woe[tr.columns]
 
-        #test_woe = sc.woebin_ply(df, classes)
-        #st.write(data.shape)
-
-
-
-
-
+        x = train_woe.drop("BAD", axis = 1)
+        y = train_woe["BAD"]       
+        
+        def scoring(base = 1000, pdo = 30):
+            
+            #CREATION DE LA GRILLE SCORE À PARTIR DES CLASSES, DU MODÈLE M ET CALIBRAGE SUR "base" POINTS
+            lr = LogisticRegression(penalty='l2', C=5, max_iter= 100, random_state=42)
+            lr.fit(x, y)
+            test_pred = lr.predict_proba(test_woe)[:,1]
+            
+            ppb = sc.scorecard(classes, lr, xcolumns=test_woe.columns, 
+                               odds0=1/500,  points0=base, pdo=pdo, basepoints_eq0 = True)
+            
+            #CALCUL DES SCORES TOTAUX DANS LE TRAIN SET
+            train_score = sc.scorecard_ply(data, ppb, print_step=0, only_total_score=False)
+            test_score = sc.scorecard_ply(df, ppb, print_step=0, only_total_score=False)
+            
+            return test_pred, test_score
+        test_pred, test_score = scoring(base = 1000, pdo = 30)
+        #st.write(test_pred)
+        st.write("Votre score est de", test_score.loc[ 0, "score"],"points.", "Ce nombre de points vous donne une probabilité de défaut de", test_pred[0])
+        
+        
+        
     if (any(val for val in inputs.values())!="") == False:
         st.warning("Veuillez remplir tous les champs")
-
