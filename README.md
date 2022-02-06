@@ -11,5 +11,5 @@ Pour la réalisation de ce projet, nous nous sommes inspirés d'un projet fait p
 
 Ce répertoire est divisé en 2 dossiers l'un contenant les données et l'autre les programmes nommés selon leurs fonctions.
 
-On a créé un outil automatisé permettant selon les caractéristiques entrées de générer le score ainsi que la probabilité de défaut d'un emprunteur. Il est accessible ici [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)]()
+On a créé un outil automatisé permettant selon les caractéristiques entrées de générer le score ainsi que la probabilité de défaut d'un emprunteur. Il est accessible ici [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/aadmberrada/linux_hmeq/main/Ameliorations/1_Programmes/app.py)
 
