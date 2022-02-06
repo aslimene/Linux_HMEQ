@@ -54,16 +54,16 @@ data = pd.read_csv(PATH + "train_clean.csv").drop("Unnamed: 0", axis = 1)
 LOAN = st.text_input("Entrez le montant du prêt demandé en $")
 
 MORTDUE = st.text_input("Entrez le montant dû sur l’hypothèque existante en $")
-st.write("Indication : La moyenne est de ", round(data.MORTDUE.mean()))
+st.write("Indication : La moyenne est de ", round(data.MORTDUE.mean()), "$")
 
 VALUE = st.text_input("Entrez la valeur du bien actuel en $")
-st.write("Indication : La moyenne est de ", round(data.VALUE.mean()))
+st.write("Indication : La moyenne est de ", round(data.VALUE.mean()), "$")
 
 REASON = st.selectbox('Indiquez le but du prêt', list(data.REASON.unique()))
 JOB = st.selectbox('Indiquez votre catégorie professionnelle', list(data.JOB.unique()))
 
 YOJ = st.text_input("Entrez le nombre d’années dans l’emploi actuel")
-st.write("Indication : La moyenne est de ", int(data.YOJ.mean()))
+#st.write("Indication : La moyenne est de ", int(data.YOJ.mean()))
 
 DEROG = st.text_input("Entrez le nombre de cas dérogatoires majeurs")
 st.write("Indication : La moyenne est de ", int(data.DEROG.mean()))
@@ -72,7 +72,7 @@ DELINQ = st.text_input("Entrez le nombre de lignes de crédit en défaut de paie
 st.write("Indication : La moyenne est de ", int(data.DELINQ.mean()))
 
 CLAGE = st.text_input("Entrez l'âge de la ligne de crédit la plus ancienne en mois")
-st.write("Indication : La moyenne est de ", int(data.CLAGE.mean()))
+st.write("Indication : La moyenne est de ", int(data.CLAGE.mean()), 'mois')
 
 NINQ = st.text_input("Entrez le nombre d’enquêtes de crédit récentes")
 st.write("Indication : La moyenne est de ", int(data.NINQ.mean()))
@@ -80,7 +80,7 @@ st.write("Indication : La moyenne est de ", int(data.NINQ.mean()))
 CLNO = st.text_input("Entrez le nombre de lignes de crédit")
 st.write("Indication : La moyenne est de ", int(data.CLNO.mean()))
 
-DEBTINC = st.text_input("Entrez votre ratio d'endettement")
+DEBTINC = st.text_input("Entrez votre ratio d'endettement en %")
 st.write("Indication : La moyenne est de ", round(data.DEBTINC.mean(), 2))
 
 
