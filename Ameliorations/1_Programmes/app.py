@@ -33,6 +33,11 @@ Pour la réalisation de ce projet, nous nous sommes inspirés d'un projet fait p
 Son projet est directement trouvable [ici](https://github.com/Carl-Lejerskar/HMEQ) """
 )
 
+st.markdown(""" Un projet de:
+*   **Abdoul Aziz Berrada**
+*   **Amira Slimene**
+*   **Yasmine Ouyahya**
+""")
 
 st.markdown(""" ==> Pre requis :
 *   **Python :** pandas, sklearn, scorecardpy, streamlit.
