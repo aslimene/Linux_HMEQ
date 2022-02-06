@@ -150,4 +150,4 @@ if score:
         else:
             st.warning('Sur la base de votre score, le prêt ne peut vous être accordé.')
     if (any(val for val in inputs.values())!="") == False:
-        st.warning("Veuillez remplir tous les champs")
+        st.error("Veuillez remplir tous les champs")
