@@ -116,7 +116,7 @@ if score:
         
         inputs_ = {"LOAN":int(LOAN), "MORTDUE": int(MORTDUE), "VALUE":int(VALUE), "REASON":REASON, 
         "JOB":JOB,  "YOJ" :int(YOJ), "DEROG":int(DEROG), "DELINQ":int(DELINQ),
-        "CLAGE":int(CLAGE), "NINQ":int(NINQ), "CLNO":int(CLNO), "DEBTINC": round(float(DEBTINC), 2)}
+        "CLAGE":int(CLAGE), "NINQ":int(NINQ), "CLNO":int(CLNO), "DEBTINC": round(DEBTINC, 2)}
 
         df = pd.DataFrame(data = inputs_, index=[0])
         st.table(df)
