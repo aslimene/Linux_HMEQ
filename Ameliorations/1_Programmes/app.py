@@ -125,7 +125,7 @@ if score:
             return test_pred, test_score
         test_pred, test_score = scoring(base = 1000, pdo = 30)
 
-        st.write("Votre score est de", int(test_score.loc[ 0, "score"]),"points.", "Ce nombre de points vous donne une probabilité de défaut de", round(test_pred[0], 2), "%")
+        st.write("Votre score est de", int(test_score.loc[ 0, "score"]),"points.", "Ce nombre de points vous donne une probabilité de défaut de", round(100*test_pred[0], 2), "%")
         
     if (any(val for val in inputs.values())!="") == False:
         st.warning("Veuillez remplir tous les champs")
