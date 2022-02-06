@@ -144,7 +144,7 @@ if score:
 
             p = sc.perf_psi(score = {'train':train_score, 'test':test_score}, 
                             label = {'train':data, 'test':df},
-                            return_distr_dat=False)
+                            return_distr_dat=True)
 
             scorecard_bins = p["dat"]["score"]
            
