@@ -101,18 +101,13 @@ if score:
 
         df = pd.DataFrame(data = inputs_, index=[0])
         st.table(df)
-
         classes = sc.woebin(data, y="BAD", positive=1, method="chimerge")
-        
         train_woe = sc.woebin_ply(data, classes)
         test_woe = sc.woebin_ply(df, classes)
-        
         tr = train_woe.drop("BAD", axis =1)
         test_woe = test_woe[tr.columns]
-
         x = train_woe.drop("BAD", axis = 1)
         y = train_woe["BAD"]       
-        
         def scoring(base = 1000, pdo = 30):
             
             #CREATION DE LA GRILLE SCORE À PARTIR DES CLASSES, DU MODÈLE M ET CALIBRAGE SUR "base" POINTS
