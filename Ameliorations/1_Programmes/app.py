@@ -158,7 +158,7 @@ if score:
         st.write("Votre score est de", int(test_score.loc[ 0, "score"]),"points.", " Ce nombre de points vous donne une probabilité de défaut de", round(100*test_pred[0], 2), "%")
 
         if int(test_score.loc[ 0, "score"]) >= 775:
-            st.success("Félicitation" + str(CIVILITÉ)+ " " + str(LASTNAME)+ " "+ str(FIRSTNAME)+ " sur la base de votre score, le prêt peut vous être accordé.")
+            st.success("Félicitation " + str(CIVILITÉ)+ " " + str(LASTNAME)+ " "+ str(FIRSTNAME)+ ", sur la base de votre score, le prêt peut vous être accordé. Pour celà il vous suffira de contacter votre conseillé(e) muni de ce justificatif et des originaux des documents demandés sur notre site. ")
 
         else:
             st.error(str(CIVILITÉ)+ " " + str(LASTNAME)+ " "+ str(FIRSTNAME)+ " sur la base de votre score, le prêt ne peut vous être accordé.")
