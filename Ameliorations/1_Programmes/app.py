@@ -113,7 +113,7 @@ def scoring(X, base = 1000, pdo = 30):
 score = st.button("Appuyez pour voir votre crédit score")
 if score:
 
-    if any(val != "" for val in inputs.values()):
+    if all(val != "" for val in inputs.values()):
         
         inputs_ = {"LOAN":int(LOAN), "MORTDUE": int(MORTDUE), "VALUE":int(VALUE), "REASON":REASON, 
         "JOB":JOB,  "YOJ" :int(YOJ), "DEROG":int(DEROG), "DELINQ":int(DELINQ),
@@ -152,5 +152,5 @@ if score:
             st.success('Sur la base de votre score, le prêt peut vous être accordé.')
         else:
             st.error('Sur la base de votre score, le prêt ne peut vous être accordé.')
-    if any(val =="" for val in inputs.values()):
+    else:
         st.error("Veuillez remplir tous les champs")
