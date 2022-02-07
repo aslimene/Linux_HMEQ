@@ -66,7 +66,7 @@ JOB = st.selectbox('Indiquez votre catégorie professionnelle', list(data.JOB.un
 YOJ = st.text_input("Entrez le nombre d’années dans l’emploi actuel")
 #st.write("Indication : La moyenne est de ", int(data.YOJ.mean()))
 
-DEROG = st.text_input("Entrez le nombre de cas dérogatoires majeurs")
+DEROG = st.text_input("Entrez le nombre de signalements de paiements indus  majeurs")
 st.write("Indication : La moyenne est de ", int(data.DEROG.mean()))
 
 DELINQ = st.text_input("Entrez le nombre de lignes de crédit en défaut de paiement")
@@ -75,7 +75,7 @@ st.write("Indication : La moyenne est de ", int(data.DELINQ.mean()))
 CLAGE = st.text_input("Entrez l'âge de la ligne de crédit la plus ancienne en mois")
 st.write("Indication : La moyenne est de ", int(data.CLAGE.mean()), 'mois')
 
-NINQ = st.text_input("Entrez le nombre d’enquêtes de crédit récentes")
+NINQ = st.text_input("Entrez le nombre de demandes de crédit récentes")
 st.write("Indication : La moyenne est de ", int(data.NINQ.mean()))
 
 CLNO = st.text_input("Entrez le nombre de lignes de crédit")
@@ -153,4 +153,4 @@ if score:
         else:
             st.error('Sur la base de votre score, le prêt ne peut vous être accordé.')
     else:
-        st.error("Veuillez remplir tous les champs")
+        st.error("Veuillez remplir tous les champs!")
