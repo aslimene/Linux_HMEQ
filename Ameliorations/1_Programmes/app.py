@@ -52,6 +52,14 @@ PATH = "https://raw.githubusercontent.com/aadmberrada/Linux_HMEQ/main/Ameliorati
 data = pd.read_csv(PATH + "train_clean.csv").drop("Unnamed: 0", axis = 1)
 
 
+st.write("Veuillez remplir le formulaire suivant, il vous prendra environ une minute")
+
+CIVILITÉ = st.selectbox('Civilité', ("M.", "Mme"))
+
+FIRSTNAME = st.text_input("Entrez votre prénom")
+
+LASTNAME = st.text_input("Entrez votre nom")
+
 LOAN = st.text_input("Entrez le montant du prêt demandé en $")
 
 MORTDUE = st.text_input("Entrez le montant dû sur l’hypothèque existante en $")
@@ -148,9 +156,11 @@ if score:
 
 
         st.write("Votre score est de", int(test_score.loc[ 0, "score"]),"points.", " Ce nombre de points vous donne une probabilité de défaut de", round(100*test_pred[0], 2), "%")
+
         if int(test_score.loc[ 0, "score"]) >= 775:
-            st.success('Sur la base de votre score, le prêt peut vous être accordé.')
+            st.success("Félicitation" + str(CIVILITÉ), " "+ str(LASTNAME), " "+ str(FIRSTNAME), "sur la base de votre score, le prêt peut vous être accordé.")
+
         else:
-            st.error('Sur la base de votre score, le prêt ne peut vous être accordé.')
+            st.error(str(CIVILITÉ), " "+ str(LASTNAME), " "+ str(FIRSTNAME), "sur la base de votre score, le prêt ne peut vous être accordé.")
     else:
         st.error("Veuillez remplir tous les champs!")
